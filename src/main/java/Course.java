@@ -5,10 +5,15 @@ public class Course {
     private Date startDate;
     private Date endDate;
 
-    public Course(String name, Date startDate, Date endDate) {
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
+    public Course(String name, Date startDate, Date endDate) throws CourseDateException {
+        if (startDate.after(endDate)) {
+            throw new CourseDateException();
+        }
+        else {
+            this.name = name;
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }
     }
 
     public String getName() {

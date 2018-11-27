@@ -11,8 +11,8 @@ public class CourseTest {
 
     private static String COURSE_NAME = "TestCourse";
 
-    @Test
-    public void endDateBeforeBeginDateThrowsException() {
+    @Test(expected = CourseDateException.class)
+    public void endDateBeforeBeginDateThrowsException() throws CourseDateException {
         // arrange
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date beginDate = new Date();
@@ -29,6 +29,5 @@ public class CourseTest {
         Course course = new Course(COURSE_NAME, beginDate, endDate);
 
         // assert
-        assertTrue(course.getEndDate().after(course.getStartDate()));
     }
 }
