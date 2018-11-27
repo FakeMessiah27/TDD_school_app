@@ -1,5 +1,6 @@
 import org.junit.Test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,5 +83,21 @@ public class SchoolTest {
         school = new School(SCHOOL_NAME, null, COURSES);
 
         // assert
+    }
+
+    @Test
+    public void AddNewCourseToSchool() throws ParseException, CourseDateException {
+        // arrange
+        School school = new School(SCHOOL_NAME, OPENING_DATE, null);
+        int nrOfCourses = school.getCourses().size();
+        Course newCourse = new Course("New Course", sdf.parse("27-11-2018"), sdf.parse("28-11-2018"));
+
+        // act
+        school.addCourse(newCourse);
+
+        // assert
+        assertEquals(0, nrOfCourses);
+        assertTrue(school.getCourses().contains(newCourse));
+        assertEquals(1, school.getCourses().size());
     }
 }
