@@ -100,4 +100,17 @@ public class SchoolTest {
         assertTrue(school.getCourses().contains(newCourse));
         assertEquals(1, school.getCourses().size());
     }
+
+    @Test(expected = CourseException.class)
+    public void IfCourseBeginDateAfterSchoolBeginDateAtSchoolCreationThrowCourseException() {
+        // arrange
+        School school;
+        List<Course> wrongCourses = new ArrayList<>();
+        wrongCourses.add(new Course("wrongCourse1", sdf.parse("01-08-2018"), sdf.parse("02-09-2018")));
+
+        // act
+        school = new School(SCHOOL_NAME, OPENING_DATE, wrongCourses);
+
+        // assert
+    }
 }
