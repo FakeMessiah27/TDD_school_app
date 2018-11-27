@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +29,7 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasAName() {
         // arrange
-        School school = new School(SCHOOL_NAME, OPENING_DATE);
+        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
         String expectedSchoolName = "TestSchool";
 
         // act
@@ -43,7 +42,7 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasOpeningDate() {
         // arrange
-        School school = new School(SCHOOL_NAME, OPENING_DATE);
+        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // act
 
@@ -55,7 +54,6 @@ public class SchoolTest {
     public void SchoolObjectHasCollectionOfCourses() {
         // arrange
         School school;
-
 
         // act
         school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
