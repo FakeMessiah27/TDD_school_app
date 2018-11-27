@@ -22,7 +22,7 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasAName() {
         // arrange
-        School school = new School(SCHOOL_NAME);
+        School school = new School(SCHOOL_NAME, openingDate);
         String expectedSchoolName = "TestSchool";
 
         // act
