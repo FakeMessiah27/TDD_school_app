@@ -28,7 +28,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void SchoolObjectHasAName() throws CourseException {
+    public void SchoolObjectHasAName() throws CourseException, DuplicateCourseException {
         // arrange
         School school;
 
@@ -40,7 +40,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void SchoolObjectHasOpeningDate() throws CourseException {
+    public void SchoolObjectHasOpeningDate() throws CourseException, DuplicateCourseException {
         // arrange
         School school;
 
@@ -52,7 +52,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void SchoolObjectHasCollectionOfCourses() throws CourseException {
+    public void SchoolObjectHasCollectionOfCourses() throws CourseException, DuplicateCourseException {
         // arrange
         School school;
 
@@ -64,7 +64,7 @@ public class SchoolTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void SchoolNameCannotBeNull() throws NullPointerException, CourseException {
+    public void SchoolNameCannotBeNull() throws NullPointerException, CourseException, DuplicateCourseException {
         // arrange
         School school;
 
@@ -75,7 +75,7 @@ public class SchoolTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void OpeningDateCannotBeNull() throws NullPointerException, CourseException {
+    public void OpeningDateCannotBeNull() throws NullPointerException, CourseException, DuplicateCourseException {
         // arrange
         School school;
 
@@ -86,7 +86,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void AddNewCourseToSchool() throws ParseException, CourseDateException, CourseException {
+    public void AddNewCourseToSchool() throws ParseException, CourseDateException, CourseException, DuplicateCourseException {
         // arrange
         School school = new School(SCHOOL_NAME, OPENING_DATE, new ArrayList<>());
         int nrOfCourses = school.getCourses().size();
@@ -102,7 +102,7 @@ public class SchoolTest {
     }
 
     @Test(expected = CourseException.class)
-    public void IfCourseBeginDateBeforeSchoolOpeningDateAtSchoolCreationThrowCourseException() throws ParseException, CourseException, CourseDateException {
+    public void IfCourseBeginDateBeforeSchoolOpeningDateAtSchoolCreationThrowCourseException() throws ParseException, CourseException, CourseDateException, DuplicateCourseException {
         // arrange
         School school;
         List<Course> wrongCourses = new ArrayList<>();
@@ -115,7 +115,7 @@ public class SchoolTest {
     }
 
     @Test(expected = CourseException.class)
-    public void NewCourseBeginDateBeforeSchoolOpeningDateThrowsCourseException() throws ParseException, CourseException, CourseDateException {
+    public void NewCourseBeginDateBeforeSchoolOpeningDateThrowsCourseException() throws ParseException, CourseException, CourseDateException, DuplicateCourseException {
         // arrange
         School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
         Course wrongCourse = new Course("wrongCourse", sdf.parse("01-08-2018"), sdf.parse("02-09-2018"));
@@ -131,8 +131,8 @@ public class SchoolTest {
         // arrange
         School school;
         List<Course> wrongCourses = new ArrayList<>();
-        wrongCourses.add(new Course("duplicateName", sdf.parse("01-08-2018"), sdf.parse("02-09-2018")));
-        wrongCourses.add(new Course("duplicateName", sdf.parse("01-08-2018"), sdf.parse("02-09-2018")));
+        wrongCourses.add(new Course("duplicateName", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
+        wrongCourses.add(new Course("duplicateName", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
 
         // act
         school = new School(SCHOOL_NAME, OPENING_DATE, wrongCourses);

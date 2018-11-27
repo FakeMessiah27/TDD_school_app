@@ -10,7 +10,7 @@ public class School {
     private Date openingDate;
     private List<Course> courses;
 
-    public School(String name, Date openingDate, List<Course> courses) throws CourseException {
+    public School(String name, Date openingDate, List<Course> courses) throws CourseException, DuplicateCourseException {
 
         // Validate parameters
         Validate.notNull(name, "School name cannot be null");
@@ -21,6 +21,9 @@ public class School {
                 throw new CourseException(c.getName());
             }
         }
+
+        if (courseListContainsDuplicates(courses))
+            throw new DuplicateCourseException();
 
         // Set parameters
         this.name = new String(name);
@@ -46,5 +49,20 @@ public class School {
         }
 
         courses.add(course);
+    }
+
+    private boolean courseListContainsDuplicates(List<Course> courses) {
+        List<String> foundNames = new ArrayList<>();
+
+        for (Course c : courses) {
+            if (foundNames.contains(c.getName())) {
+                return true;
+            }
+            else {
+                foundNames.add(c.getName());
+            }
+        }
+
+        return false;
     }
 }
