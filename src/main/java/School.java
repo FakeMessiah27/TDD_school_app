@@ -65,4 +65,14 @@ public class School {
 
         return false;
     }
+
+    public Course getCourse(String courseName) {
+        for (Course c : courses) {
+            if (c.getName() == courseName) {
+                return c;
+            }
+        }
+
+        return null;
+    }
 }

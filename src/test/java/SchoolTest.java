@@ -141,7 +141,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void CanGetCourseByName() {
+    public void CanGetCourseByName() throws DuplicateCourseException, CourseException {
         // arrange
         School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
         String knownCourseName = COURSES.get(0).getName();
