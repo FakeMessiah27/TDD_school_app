@@ -36,7 +36,7 @@ public class SchoolTest {
         school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
-        assertFalse(school.getName() == null);
+        assertNull(school.getName());
     }
 
     @Test
@@ -48,7 +48,7 @@ public class SchoolTest {
         school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
-        assertFalse(school.getOpeningDate() == null);
+        assertNotNull(school.getOpeningDate());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class SchoolTest {
         school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
-        assertFalse(school.getCourses() == null);
+        assertNotNull(school.getCourses());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -88,7 +88,7 @@ public class SchoolTest {
     @Test
     public void AddNewCourseToSchool() throws ParseException, CourseDateException {
         // arrange
-        School school = new School(SCHOOL_NAME, OPENING_DATE, null);
+        School school = new School(SCHOOL_NAME, OPENING_DATE, new ArrayList<>());
         int nrOfCourses = school.getCourses().size();
         Course newCourse = new Course("New Course", sdf.parse("27-11-2018"), sdf.parse("28-11-2018"));
 
