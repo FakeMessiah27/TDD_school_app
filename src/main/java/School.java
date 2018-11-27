@@ -40,7 +40,11 @@ public class School {
         return courses;
     }
 
-    public void addCourse(Course course) {
+    public void addCourse(Course course) throws CourseException {
+        if (course.getStartDate().before(openingDate)) {
+            throw new CourseException(course.getName());
+        }
+
         courses.add(course);
     }
 }
