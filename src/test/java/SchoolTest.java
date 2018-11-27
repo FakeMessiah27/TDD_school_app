@@ -169,4 +169,16 @@ public class SchoolTest {
         assertEquals(COURSES.size(), courseNames.size());
         assertEquals(courseNames, foundCourseNames);
     }
+
+    @Test
+    public void GetCopiesOfCoursesTest() throws DuplicateCourseException, CourseException {
+        // arrange
+        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
+
+        // act
+        List<Course> courseCopies = school.getCourseCopies();
+
+        // assert
+        assertArrayEquals(COURSES.toArray(), courseCopies.toArray());
+    }
 }
