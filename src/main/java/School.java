@@ -75,4 +75,14 @@ public class School {
 
         return null;
     }
+
+    public List<String> getCourseNames() {
+        List<String> courseNames = new ArrayList<>();
+
+        for (Course c : courses) {
+            courseNames.add(c.getName());
+        }
+
+        return courseNames;
+    }
 }
