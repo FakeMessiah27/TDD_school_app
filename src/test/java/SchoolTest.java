@@ -2,19 +2,27 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
 public class SchoolTest {
 
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
     private static String SCHOOL_NAME = "TestSchool";
-    private static Date openingDate;
+    private static Date OPENING_DATE;
+    private static List<Course> COURSES = new ArrayList<>();
 
     static {
         try {
-            openingDate = new SimpleDateFormat("dd-MM-yyyy").parse("01-09-2018");
-        } catch (ParseException e) {
+            OPENING_DATE = sdf.parse("01-09-2018");
+
+            COURSES.add(new Course("Course1", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
+            COURSES.add(new Course("Course2", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
+            COURSES.add(new Course("Course3", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -22,7 +30,7 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasAName() {
         // arrange
-        School school = new School(SCHOOL_NAME, openingDate);
+        School school = new School(SCHOOL_NAME, OPENING_DATE);
         String expectedSchoolName = "TestSchool";
 
         // act
@@ -35,12 +43,24 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasOpeningDate() {
         // arrange
-        School school = new School(SCHOOL_NAME, openingDate);
+        School school = new School(SCHOOL_NAME, OPENING_DATE);
 
         // act
 
-
         // assert
         assertFalse(school.getOpeningDate() == null);
+    }
+
+    @Test
+    public void SchoolObjectHasCollectionOfCourses() {
+        // arrange
+        School school;
+
+
+        // act
+        school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
+
+        // assert
+        assertFalse(school.getCourses() == null);
     }
 }
