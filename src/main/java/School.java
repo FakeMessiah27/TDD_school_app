@@ -13,6 +13,7 @@ public class School {
 
         // Validate parameters
         Validate.notNull(name, "School name cannot be null");
+        Validate.notNull(openingDate, "Opening date cannot be null");
 
         // Set parameters
         this.name = name;
