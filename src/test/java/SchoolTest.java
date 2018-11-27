@@ -62,7 +62,7 @@ public class SchoolTest {
         assertFalse(school.getCourses() == null);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void SchoolNameCannotBeNull() throws NullPointerException {
         // arrange
         School school;

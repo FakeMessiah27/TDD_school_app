@@ -1,3 +1,5 @@
+import org.apache.commons.lang.Validate;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +10,11 @@ public class School {
     private List<Course> courses;
 
     public School(String name, Date openingDate, List<Course> courses) {
+
+        // Validate parameters
+        Validate.notNull(name, "School name cannot be null");
+
+        // Set parameters
         this.name = name;
         this.openingDate = openingDate;
         this.courses = courses;
