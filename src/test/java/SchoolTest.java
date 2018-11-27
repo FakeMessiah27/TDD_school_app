@@ -125,4 +125,18 @@ public class SchoolTest {
 
         // assert
     }
+
+    @Test(expected = DuplicateCourseException.class)
+    public void IfCourseNameNotUniqueAtSchoolCreationThrowException() throws ParseException, CourseException, CourseDateException, DuplicateCourseException {
+        // arrange
+        School school;
+        List<Course> wrongCourses = new ArrayList<>();
+        wrongCourses.add(new Course("duplicateName", sdf.parse("01-08-2018"), sdf.parse("02-09-2018")));
+        wrongCourses.add(new Course("duplicateName", sdf.parse("01-08-2018"), sdf.parse("02-09-2018")));
+
+        // act
+        school = new School(SCHOOL_NAME, OPENING_DATE, wrongCourses);
+
+        // assert
+    }
 }
