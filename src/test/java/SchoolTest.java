@@ -72,4 +72,15 @@ public class SchoolTest {
 
         // assert
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void OpeningDateCannotBeNull() throws NullPointerException {
+        // arrange
+        School school;
+
+        // act
+        school = new School(SCHOOL_NAME, null, COURSES);
+
+        // assert
+    }
 }
