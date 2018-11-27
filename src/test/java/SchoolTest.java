@@ -61,4 +61,15 @@ public class SchoolTest {
         // assert
         assertFalse(school.getCourses() == null);
     }
+
+    @Test(expected = NullPointerException.class)
+    public void SchoolNameCannotBeNull() throws NullPointerException {
+        // arrange
+        School school;
+
+        // act
+        school = new School(null, OPENING_DATE, COURSES);
+
+        // assert
+    }
 }
