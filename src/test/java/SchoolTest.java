@@ -11,9 +11,9 @@ import static org.junit.Assert.*;
 public class SchoolTest {
 
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    private static String SCHOOL_NAME = "TestSchool";
+    private static final String SCHOOL_NAME = "TestSchool";
     private static Date OPENING_DATE;
-    private static List<Course> COURSES = new ArrayList<>();
+    private static final List<Course> COURSES = new ArrayList<>();
 
     static {
         try {
@@ -102,7 +102,7 @@ public class SchoolTest {
     }
 
     @Test(expected = CourseException.class)
-    public void IfCourseBeginDateAfterSchoolBeginDateAtSchoolCreationThrowCourseException() throws ParseException, CourseException, CourseDateException {
+    public void IfCourseBeginDateBeforeSchoolOpeningDateAtSchoolCreationThrowCourseException() throws ParseException, CourseException, CourseDateException {
         // arrange
         School school;
         List<Course> wrongCourses = new ArrayList<>();
@@ -114,5 +114,15 @@ public class SchoolTest {
         // assert
     }
 
+    @Test(expected = CourseException.class)
+    public void NewCourseBeginDateBeforeSchoolOpeningDateThrowsCourseException() throws ParseException, CourseException, CourseDateException {
+        // arrange
+        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
+        Course wrongCourse = new Course("wrongCourse", sdf.parse("01-08-2018"), sdf.parse("02-09-2018"));
 
+        // act
+        school.addCourse(wrongCourse);
+
+        // assert
+    }
 }

@@ -1,5 +1,6 @@
 import org.apache.commons.lang.Validate;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class School {
         }
 
         // Set parameters
-        this.name = name;
+        this.name = new String(name);
         this.openingDate = openingDate;
-        this.courses = courses;
+        this.courses = new ArrayList<>(courses);
     }
 
     public String getName() {
