@@ -139,4 +139,17 @@ public class SchoolTest {
 
         // assert
     }
+
+    @Test
+    public void CanGetCourseByName() {
+        // arrange
+        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
+        String knownCourseName = COURSES.get(0).getName();
+
+        // act
+        Course foundCourse = school.getCourse(knownCourseName);
+
+        // assert
+        assertEquals(COURSES.get(0), foundCourse);
+    }
 }
