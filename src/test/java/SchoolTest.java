@@ -28,7 +28,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void SchoolObjectHasAName() {
+    public void SchoolObjectHasAName() throws CourseException {
         // arrange
         School school;
 
@@ -36,11 +36,11 @@ public class SchoolTest {
         school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
-        assertNull(school.getName());
+        assertNotNull(school.getName());
     }
 
     @Test
-    public void SchoolObjectHasOpeningDate() {
+    public void SchoolObjectHasOpeningDate() throws CourseException {
         // arrange
         School school;
 
@@ -52,7 +52,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void SchoolObjectHasCollectionOfCourses() {
+    public void SchoolObjectHasCollectionOfCourses() throws CourseException {
         // arrange
         School school;
 
@@ -64,7 +64,7 @@ public class SchoolTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void SchoolNameCannotBeNull() throws NullPointerException {
+    public void SchoolNameCannotBeNull() throws NullPointerException, CourseException {
         // arrange
         School school;
 
@@ -75,7 +75,7 @@ public class SchoolTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void OpeningDateCannotBeNull() throws NullPointerException {
+    public void OpeningDateCannotBeNull() throws NullPointerException, CourseException {
         // arrange
         School school;
 
@@ -86,7 +86,7 @@ public class SchoolTest {
     }
 
     @Test
-    public void AddNewCourseToSchool() throws ParseException, CourseDateException {
+    public void AddNewCourseToSchool() throws ParseException, CourseDateException, CourseException {
         // arrange
         School school = new School(SCHOOL_NAME, OPENING_DATE, new ArrayList<>());
         int nrOfCourses = school.getCourses().size();
@@ -102,7 +102,7 @@ public class SchoolTest {
     }
 
     @Test(expected = CourseException.class)
-    public void IfCourseBeginDateAfterSchoolBeginDateAtSchoolCreationThrowCourseException() {
+    public void IfCourseBeginDateAfterSchoolBeginDateAtSchoolCreationThrowCourseException() throws ParseException, CourseException, CourseDateException {
         // arrange
         School school;
         List<Course> wrongCourses = new ArrayList<>();
@@ -113,4 +113,6 @@ public class SchoolTest {
 
         // assert
     }
+
+
 }

@@ -9,11 +9,17 @@ public class School {
     private Date openingDate;
     private List<Course> courses;
 
-    public School(String name, Date openingDate, List<Course> courses) {
+    public School(String name, Date openingDate, List<Course> courses) throws CourseException {
 
         // Validate parameters
         Validate.notNull(name, "School name cannot be null");
         Validate.notNull(openingDate, "Opening date cannot be null");
+
+        for (Course c : courses) {
+            if (c.getStartDate().before(openingDate)) {
+                throw new CourseException(c.getName());
+            }
+        }
 
         // Set parameters
         this.name = name;
