@@ -29,22 +29,22 @@ public class SchoolTest {
     @Test
     public void SchoolObjectHasAName() {
         // arrange
-        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
-        String expectedSchoolName = "TestSchool";
+        School school;
 
         // act
-        String schoolName = school.getName();
+        school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
-        assertEquals(schoolName, expectedSchoolName);
+        assertFalse(school.getName() == null);
     }
 
     @Test
     public void SchoolObjectHasOpeningDate() {
         // arrange
-        School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
+        School school;
 
         // act
+        school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // assert
         assertFalse(school.getOpeningDate() == null);
