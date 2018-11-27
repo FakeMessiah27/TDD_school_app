@@ -171,14 +171,16 @@ public class SchoolTest {
     }
 
     @Test
-    public void GetCopiesOfCoursesTest() throws DuplicateCourseException, CourseException {
+    public void GetCopiesOfCoursesTest() throws DuplicateCourseException, CourseException, ParseException, CourseDateException {
         // arrange
         School school = new School(SCHOOL_NAME, OPENING_DATE, COURSES);
 
         // act
         List<Course> courseCopies = school.getCourseCopies();
+        school.addCourse(new Course("newCourseAfterCopy", sdf.parse("27-11-2018"), sdf.parse("28-11-2018")));
 
         // assert
         assertArrayEquals(COURSES.toArray(), courseCopies.toArray());
+        assertNotEquals(school.getCourses().get(school.getCourses().size() - 1), courseCopies.get(courseCopies.size() - 1));
     }
 }

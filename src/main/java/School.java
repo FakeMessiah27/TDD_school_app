@@ -85,4 +85,8 @@ public class School {
 
         return courseNames;
     }
+
+    public List<Course> getCourseCopies() {
+        return new ArrayList<>(courses);
+    }
 }
